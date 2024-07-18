@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const apiKey = 'c5dd411b';
-    const watchmodeApiKey = 'MtYFACMaEm1n6c4kkHDqSVU74MSGLNY3jc2oWoXY'; // Dein Watchmode API Key
+    const watchmodeApiKey = 'MtYFACMaEm1n6c4kkHDqSVU74MSGLNY3jc2oWoXY';
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
 
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         providersContainer.innerHTML = '';
 
         // Filtere die Streaming-Anbieter nach Region (DE oder US) und wähle die wichtigsten aus
-        const importantProviders = ['Netflix', 'Amazon Prime Video', 'Disney+', 'Hulu', 'HBO Max'];
+        const importantProviders = ['Netflix', 'Amazon Prime Video', 'Disney+', 'Hulu', 'HBO Max', 'Amazon'];
         const filteredProviders = data.filter(provider => 
             (provider.region === 'US' || provider.region === 'DE') && 
             importantProviders.includes(provider.name)
