@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmdetails</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Dark mode */
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div id="notification" class="fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hidden">
+        Zur Watchlist hinzugefügt
+    </div>
+    <div class="container mx-auto p-6 bg-gray-800 rounded-lg shadow-lg mt-10">
+        <h1 id="movieTitle" class="text-4xl font-extrabold mb-4 text-white"></h1>
+        <img id="moviePoster" src="" alt="Poster" class="w-full max-w-sm mx-auto rounded-lg shadow-md mb-6">
+        <p id="moviePlot" class="text-lg mb-2 text-gray-300"></p>
+        <p id="movieGenre" class="text-lg mb-2 text-gray-400"></p>
+        <p id="movieDirector" class="text-lg mb-2 text-gray-400"></p>
+        <p id="movieActors" class="text-lg mb-4 text-gray-400"></p>
+        <div id="ratingContainer" class="mb-6">
+            <label for="rating" class="block mb-2 text-lg font-medium text-gray-300">IMDb Rating:</label>
+            <div class="relative">
+                <div class="overflow-hidden h-4 text-xs flex rounded bg-gray-600">
+                    <div id="ratingBar" class="flex flex-col text-center whitespace-nowrap text-white bg-green-500"></div>
+                </div>
+                <span id="ratingValue" class="block text-center mt-2 text-xl font-semibold text-white">0 / 10</span>
+            </div>
+        </div>
+        <div class="flex justify-between mt-4">
+            <button onclick="window.history.back()" class="bg-blue-600 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                Zurück
+            </button>
+            <button id="addToWatchlist" onclick="addToWatchlist()" class="bg-green-600 hover:bg-green-800 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                Zur Watchlist hinzufügen
+            </button>
+        </div>
+    </div>
+    <script src="details.js"></script>
+</body>
+</html>

@@ -3,17 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watchlist Anwendung</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Watchlist-Anwendung</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Meine Watchlist</h1>
-        <input type="text" id="searchInput" placeholder="Film suchen...">
-        <button id="searchButton">Suchen</button>
-        <div id="searchResults"></div>
-        <h2>Meine Watchlist</h2>
-        <ul id="watchlist"></ul>
+<body class="dark-mode">
+    <div class="container mx-auto p-6">
+        <!-- Empfohlene Filme und Suchergebnisse nebeneinander -->
+        <div class="flex gap-6 mb-6">
+            <!-- Empfohlene Filme -->
+            <div class="flex-1 bg-gray-800 p-4 rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold mb-2 text-white">Empfohlene Filme</h2>
+                <ul id="recommendedMovies" class="movie-list flex overflow-x-auto space-x-4">
+                    <!-- Beispiel-Film-Elemente -->
+                    <!-- Diese sollten durch dynamische Inhalte ersetzt werden -->
+                    <li class="flex-none w-32 bg-gray-700 text-white rounded-lg p-2">Film 1</li>
+                    <li class="flex-none w-32 bg-gray-700 text-white rounded-lg p-2">Film 2</li>
+                    <li class="flex-none w-32 bg-gray-700 text-white rounded-lg p-2">Film 3</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Suchfeld und Button -->
+        <div class="flex mb-6">
+            <input type="text" id="searchInput" placeholder="Film suchen..." class="w-full max-w-xs p-3 border rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="searchButton" class="ml-4 bg-blue-600 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                Suchen
+            </button>
+        </div>
+
+        <!-- Suchergebnisse -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+            <h2 class="text-2xl font-bold mb-4 text-white">Suchergebnisse</h2>
+            <ul id="searchResults" class="movie-list space-y-4">
+                
+            </ul>
+        </div>
+
+        <!-- Watchlist -->
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-white">Watchlist</h2>
+            <ul id="watchlist" class="movie-list space-y-4">
+                <!-- Watchlist wird hier hinzugefügt -->
+            </ul>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
