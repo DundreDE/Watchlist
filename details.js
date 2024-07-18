@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const apiKey = 'c5dd411b';
-    const apiKey1 = 'c5dd411b';
+    const apiKey1 = 'MtYFACMaEm1n6c4kkHDqSVU74MSGLNY3jc2oWoXY';
     const watchmodeApiKey = 'MtYFACMaEm1n6c4kkHDqSVU74MSGLNY3jc2oWoXY'; // Dein Watchmode API Key
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
