@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     const apiKey = 'c5dd411b';
-    const apiKey1 = 'MtYFACMaEm1n6c4kkHDqSVU74MSGLNY3jc2oWoXY';
     const watchmodeApiKey = 'MtYFACMaEm1n6c4kkHDqSVU74MSGLNY3jc2oWoXY'; // Dein Watchmode API Key
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funktion zum Hinzufügen eines Films zur Watchlist
     function addToWatchlist() {
-        fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey1}`)
+        fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`)
             .then(response => response.json())
             .then(movie => {
                 watchlist.push(movie); // Füge den Film zur Watchlist hinzu
@@ -67,16 +66,24 @@ document.addEventListener('DOMContentLoaded', function () {
             importantProviders.includes(provider.name)
         );
 
-        filteredProviders.forEach(provider => {
+        // Gruppiere Anbieter nach Name, um Duplikate zu vermeiden
+        const groupedProviders = filteredProviders.reduce((acc, provider) => {
+            if (!acc[provider.name]) {
+                acc[provider.name] = provider;
+            }
+            return acc;
+        }, {});
+
+        Object.values(groupedProviders).forEach(provider => {
             const providerElement = document.createElement('a');
             providerElement.href = provider.web_url;
             providerElement.target = '_blank';
             providerElement.className = 'bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105';
-            providerElement.innerText = provider.name;
+            providerElement.innerText = `${provider.name} (${provider.region})`;
             providersContainer.appendChild(providerElement);
         });
 
-        if (filteredProviders.length === 0) {
+        if (Object.keys(groupedProviders).length === 0) {
             const noProviders = document.createElement('p');
             noProviders.className = 'text-white';
             noProviders.innerText = 'Keine Streaming-Anbieter gefunden';
