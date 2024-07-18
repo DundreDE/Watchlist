@@ -1,0 +1,54 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#searchInput {
+    width: 80%;
+    padding: 10px;
+    margin: 20px auto;
+    display: block;
+}
+
+#searchButton {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+#searchResults, #watchlist {
+    list-style: none;
+    padding: 0;
+}
+
+#searchResults li, #watchlist li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    margin-left: 10px;
+}
+
+img {
+    width: 50px;
+    margin-right: 10px;
+}
