@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         providersContainer.innerHTML = '';
 
         // Filtere die Streaming-Anbieter nach Region (DE oder US) und wähle die wichtigsten aus
-        const importantProviders = ['Netflix', 'Amazon Prime Video', 'Disney+', 'Hulu', 'HBO Max', 'Amazon'];
+        const importantProviders = ['Netflix', 'Amazon Prime Video', 'Disney+', 'Hulu', 'HBO Max', 'Amazon', 'AppleTV'];
         const filteredProviders = data.filter(provider => 
             (provider.region === 'US' || provider.region === 'DE') && 
             importantProviders.includes(provider.name)
