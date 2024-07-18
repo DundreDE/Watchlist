@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const apiKey = 'c5dd411b';
+    const apiKey1 = 'c5dd411b';
     const watchmodeApiKey = 'MtYFACMaEm1n6c4kkHDqSVU74MSGLNY3jc2oWoXY'; // Dein Watchmode API Key
     const urlParams = new URLSearchParams(window.location.search);
     const movieId = urlParams.get('id');
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Funktion zum Hinzufügen eines Films zur Watchlist
     function addToWatchlist() {
-        fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`)
+        fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey1}`)
             .then(response => response.json())
             .then(movie => {
                 watchlist.push(movie); // Füge den Film zur Watchlist hinzu
