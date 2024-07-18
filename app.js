@@ -23,31 +23,31 @@ renderWatchlist();
 fetchRecommendedMovies();
 checkSearchParams();
 
-// Funktion zum Abrufen der empfohlenen Filme
+
 function fetchRecommendedMovies() {
-    fetch(`http://www.omdbapi.com/?s=movie&apikey=${apiKey}`)
+    fetch(`https://www.omdbapi.com/?s=movie&apikey=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             let output = '';
             if (data.Response === 'False') {
                 output = '<p class="no-results text-center text-white">Keine empfohlenen Filme gefunden</p>';
             } else {
-                const results = data.Search;
+                const results = data.Search.slice(0, 3); // Nur die ersten 3 Ergebnisse
                 if (results && results.length > 0) {
                     results.sort((a, b) => b.Year - a.Year);
                     results.forEach(movie => {
-                        fetch(`http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
+                        fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
                             .then(response => response.json())
                             .then(movieDetails => {
                                 if (parseFloat(movieDetails.imdbRating) >= 7) {
                                     output += `
-                                        <li class="flex items-center space-x-4 bg-gray-700 p-3 rounded-lg mb-3 shadow-lg cursor-pointer transition-transform transform hover:scale-105" onclick="openDetails('${movieDetails.imdbID}')">
-                                            <img src="${movieDetails.Poster !== 'N/A' ? movieDetails.Poster : 'https://via.placeholder.com/150'}" alt="Poster" class="w-24 h-36 object-cover rounded-lg">
-                                            <div class="flex-1">
+                                        <li class="group flex flex-col md:flex-row items-center space-x-4 bg-gray-700 p-4 rounded-lg mb-3 shadow-lg cursor-pointer transition-transform transform hover:scale-105" onclick="openDetails('${movieDetails.imdbID}')">
+                                            <img src="${movieDetails.Poster !== 'N/A' ? movieDetails.Poster : 'https://via.placeholder.com/150'}" alt="Poster" class="w-full md:w-24 md:h-36 object-cover rounded-lg mb-3 md:mb-0">
+                                            <div class="flex-1 text-center md:text-left">
                                                 <h3 class="text-white font-semibold">${movieDetails.Title} (${movieDetails.Year})</h3>
                                                 <p class="text-gray-400">Rating: ${movieDetails.imdbRating}</p>
                                             </div>
-                                            <button onclick="addToWatchlist('${movieDetails.imdbID}', event)" class="bg-blue-600 hover:bg-blue-800 text-white font-semibold py-1 px-3 rounded-lg">
+                                            <button onclick="addToWatchlist('${movieDetails.imdbID}', event)" class="bg-blue-600 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-lg">
                                                 Zur Watchlist hinzufügen
                                             </button>
                                         </li>
@@ -65,13 +65,16 @@ function fetchRecommendedMovies() {
         .catch(err => console.error('Fehler beim Abrufen der empfohlenen Filme:', err));
 }
 
+
+
+
 // Funktion zum Suchen von Filmen und URL-Update
 function searchMovies() {
     const searchInput = document.getElementById('searchInput').value;
     if (searchInput) {
         const searchQuery = encodeURIComponent(searchInput);
         window.history.pushState({}, '', `?search=${searchQuery}`);
-        fetch(`http://www.omdbapi.com/?s=${searchQuery}&apikey=${apiKey}`)
+        fetch(`https://www.omdbapi.com/?s=${searchQuery}&apikey=${apiKey}`)
             .then(response => response.json())
             .then(data => {
                 let output = '';
@@ -80,7 +83,7 @@ function searchMovies() {
                 } else {
                     const results = data.Search;
                     results.forEach(movie => {
-                        fetch(`http://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
+                        fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&apikey=${apiKey}`)
                             .then(response => response.json())
                             .then(movieDetails => {
                                 output += `
@@ -128,7 +131,7 @@ function addToWatchlist(id, event) {
         return;
     }
 
-    fetch(`http://www.omdbapi.com/?i=${id}&apikey=${apiKey}`)
+    fetch(`https://www.omdbapi.com/?i=${id}&apikey=${apiKey}`)
         .then(response => response.json())
         .then(movie => {
             watchlist.push(movie); // Füge den Film zur Watchlist hinzu
